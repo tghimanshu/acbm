@@ -105,7 +105,7 @@ var DOM = function () {
      * empty string.
      * @param {string} text The desired text to go inside of the element. It
      * defaults to an empty string.
-     * @return {Element}
+     * @return {Element} The created DOM element.
      */
     value: function createNode(tag) {
       var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
@@ -128,6 +128,7 @@ var DOM = function () {
      * @param {Element} el Element to listen to.
      * @param {string} event Event Type.
      * @param {Function} callback Function to execute once the event fires.
+     * @return {void}
      */
 
   }, {
@@ -145,8 +146,8 @@ var DOM = function () {
 
     /**
      * Gets the prefixed transitionend event.
-     * @param {?Element} optEl Element to check
-     * @return {string}
+     * @param {?Element} optEl Element to check.
+     * @return {string} The name of the transition end event for the current browser.
      */
 
   }, {
@@ -180,8 +181,8 @@ var DOM = function () {
 
     /**
      * Gets the prefixed animation end event.
-     * @param {?Element} optEl Element to check
-     * @return {string}
+     * @param {?Element} optEl Element to check.
+     * @return {string} The name of the animation end event for the current browser.
      */
 
   }, {
@@ -217,6 +218,7 @@ var DOM = function () {
     /**
      * Hides an element setting the display to none.
      * @param {Element} el Element to be hidden.
+     * @return {void}
      */
 
   }, {
@@ -229,6 +231,7 @@ var DOM = function () {
      * Shows an element by removing the display property. This is only intended
      * to be used in conjunction with DOM.hide.
      * @param {Element} el Element to be shown.
+     * @return {void}
      */
 
   }, {
@@ -240,7 +243,7 @@ var DOM = function () {
     /**
      * Checks if the element is visible.
      * @param {Element} el Element to check.
-     * @return {boolean}
+     * @return {boolean} True if the element is visible (has an offsetParent), false otherwise.
      */
 
   }, {
@@ -255,6 +258,7 @@ var DOM = function () {
      * @param {string} eventType The event type.
      * @param {Object} eventInfo Optional parameter to provide additional data
      * to the event.
+     * @return {void}
      */
 
   }, {
@@ -335,6 +339,7 @@ var DOM = function () {
      * Inserts and element after another element.
      * @param {Element} elem the element to be inserted.
      * @param {Element} target the element to be inserted after.
+     * @return {void}
      */
 
   }, {
@@ -417,6 +422,7 @@ var Slide = function () {
 
   /**
    * Hides the node and removes the class that makes it "active".
+     * @return {void}
    */
 
 
@@ -429,6 +435,7 @@ var Slide = function () {
 
     /**
      * Shows the node and adds the class that makes it "active".
+     * @return {void}
      */
 
   }, {
@@ -440,6 +447,7 @@ var Slide = function () {
 
     /**
      * Moves the section to the bottom of the section's list.
+     * @return {void}
      * @fires Slide#dom:leave
      * @fires Slide#dom:enter
      */
@@ -456,6 +464,7 @@ var Slide = function () {
 
     /**
      * Moves the section to the top of the section's list.
+     * @return {void}
      * @fires Slide#dom:leave
      * @fires Slide#dom:enter
      */
@@ -472,6 +481,7 @@ var Slide = function () {
 
     /**
      * Fires an enable event.
+     * @return {void}
      * @fires Slide#slide:enable
      */
 
@@ -483,6 +493,7 @@ var Slide = function () {
 
     /**
      * Fires a disable event.
+     * @return {void}
      * @fires Slide#slide:disable
      */
 
@@ -495,6 +506,7 @@ var Slide = function () {
     /**
      * Fires an event passing the slide instance on the detail.
      * @param {String} name Name of the event to fire.
+     * @return {void}
      * @private
      */
 
@@ -556,6 +568,10 @@ var Slide = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/**
+ * Map of key codes to key names.
+ * @type {Object}
+ */
 var Keys = {
   ENTER: 13,
   SPACE: 32,
@@ -601,7 +617,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is Android or not.
-     * @return {Boolean}
+     * @return {Boolean} True if Android, false otherwise.
      */
     value: function isAndroid() {
       return !!UA.match(/Android/i);
@@ -609,7 +625,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is BlackBerry or not.
-     * @return {Boolean}
+     * @return {Boolean} True if BlackBerry, false otherwise.
      */
 
   }, {
@@ -620,7 +636,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is iOS or not.
-     * @return {Boolean}
+     * @return {Boolean} True if iOS, false otherwise.
      */
 
   }, {
@@ -631,7 +647,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is Opera or not.
-     * @return {Boolean}
+     * @return {Boolean} True if Opera, false otherwise.
      */
 
   }, {
@@ -642,7 +658,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is Windows or not.
-     * @return {Boolean}
+     * @return {Boolean} True if Windows, false otherwise.
      */
 
   }, {
@@ -653,7 +669,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is Windows Phone or not.
-     * @return {Boolean}
+     * @return {Boolean} True if Windows Phone, false otherwise.
      */
 
   }, {
@@ -664,7 +680,7 @@ var MobileDetector = function () {
 
     /**
      * Whether the device is any mobile device or not.
-     * @return {Boolean}
+     * @return {Boolean} True if any mobile device, false otherwise.
      */
 
   }, {
@@ -696,7 +712,8 @@ var SCROLLABLE_CONTAINER = document.getElementById('webslides');
  * @param {number} y Offset of the page to scroll to.
  * @param {number} duration Duration of the animation. 500ms by default.
  * @param {function} cb Callback function to call upon completion.
- * @param {HTMLElement} container The HTML element where to scroll
+ * @param {HTMLElement} container The HTML element where to scroll.
+ * @return {void}
  */
 function scrollTo(y) {
   var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
@@ -908,6 +925,7 @@ var WebSlides = function () {
   /**
    * Removes all children elements inside of the main container that are not
    * eligible to be a Slide Element.
+   * @return {void}
    * @private
    */
 
@@ -930,6 +948,7 @@ var WebSlides = function () {
     /**
      * Creates all the registered plugins and store the instances inside of the
      * the webslide instance.
+     * @return {void}
      * @private
      */
 
@@ -946,6 +965,7 @@ var WebSlides = function () {
 
     /**
      * Called once the WebSlide instance has finished initialising.
+     * @return {void}
      * @private
      * @fires WebSlide#ws:init
      */
@@ -960,6 +980,7 @@ var WebSlides = function () {
 
     /**
      * Grabs the slides from the DOM and creates all the Slides modules.
+     * @return {void}
      * @private
      */
 
@@ -979,6 +1000,7 @@ var WebSlides = function () {
      * @param {?boolean=} forward Whether we're forcing moving forward/backwards.
      * This parameter is used only from the goNext, goPrev functions to adjust the
      * scroll animations.
+     * @return {void}
      */
 
   }, {
@@ -1013,6 +1035,7 @@ var WebSlides = function () {
      * @param {Slide} nextSlide Next slide.
      * @param {Function} callback Callback to be called upon finishing. This is an
      * async function so it'll happen once the scroll animation finishes.
+     * @return {void}
      * @private
      * @see scrollTo
      */
@@ -1053,6 +1076,7 @@ var WebSlides = function () {
      * @param {Slide} nextSlide Next slide.
      * @param {Function} callback Callback to be called upon finishing. This is a
      * sync function so it'll happen on run time.
+     * @return {void}
      * @private
      */
 
@@ -1096,6 +1120,7 @@ var WebSlides = function () {
      * references to the current slide, disables the moving flag and fires
      * a custom event.
      * @param {Slide} slide The slide we're transitioning to.
+     * @return {void}
      * @fires WebSlide#ws:slide-change
      * @private
      */
@@ -1121,6 +1146,7 @@ var WebSlides = function () {
 
     /**
      * Goes to the next slide.
+     * @return {void}
      */
 
   }, {
@@ -1141,6 +1167,7 @@ var WebSlides = function () {
 
     /**
      * Goes to the previous slide.
+     * @return {void}
      */
 
   }, {
@@ -1175,6 +1202,7 @@ var WebSlides = function () {
     /**
      * Init the shown slide on load. It'll fetch it from the Hash if present
      * and, otherwise, it'll default to the first one.
+     * @return {void}
      * @private
      * @see Hash.getSlideNumber
      */
@@ -1204,6 +1232,7 @@ var WebSlides = function () {
 
     /**
      * Toggles zoom
+     * @return {void}
      */
 
   }, {
@@ -1216,6 +1245,7 @@ var WebSlides = function () {
 
     /**
      * Disables the webslides element adding a class "disabled"
+     * @return {void}
      */
 
   }, {
@@ -1230,6 +1260,7 @@ var WebSlides = function () {
 
     /**
      * Enables the webslides element removing a class "disabled"
+     * @return {void}
      */
 
   }, {
@@ -1244,7 +1275,7 @@ var WebSlides = function () {
 
     /**
      * Checks if it is disabled
-     * @return {boolean}
+     * @return {boolean} True if disabled, false otherwise.
      */
 
   }, {
@@ -1255,6 +1286,7 @@ var WebSlides = function () {
 
     /**
      * Puts the browser into fullscreen
+     * @return {void}
      */
 
   }, {
@@ -1387,6 +1419,7 @@ var AutoSlide = function () {
   /**
    * On focus handler. Will decide if stops/play depending on the focused
    * element if autoslide is active.
+   * @return {void}
    */
 
 
@@ -1405,6 +1438,7 @@ var AutoSlide = function () {
      * autoslide option was a number greater than 0.
      * @param {?number=} time Amount of milliseconds to wait to go to next slide
      * automatically.
+     * @return {void}
      */
 
   }, {
@@ -1423,6 +1457,7 @@ var AutoSlide = function () {
 
     /**
      * Stops autosliding all the slides.
+     * @return {void}
      */
 
   }, {
@@ -1529,6 +1564,7 @@ var ClickNav = function () {
    * Reacts to the click event. It will go to the next slide unless the element
    * has a data-prevent-nav attribute or is on the list of CLICKABLE_ELS.
    * @param {MouseEvent} event The click event.
+   * @return {void}
    * @private
    */
 
@@ -1599,6 +1635,7 @@ var Grid = function () {
   /**
    * Reacts to the keydown event. It reacts to ENTER key to toggle the class.
    * @param {KeyboardEvent} event The key event.
+   * @return {void}
    * @private
    */
 
@@ -1651,6 +1688,7 @@ var Hash = function () {
   /**
    * hashchange event handler, makes the WebSlide instance navigate to the
    * needed slide.
+   * @return {void}
    */
 
 
@@ -1667,6 +1705,7 @@ var Hash = function () {
     /**
      * Handler for the slide change event which updates the slide on the hash.
      * @param {Event} event
+     * @return {void}
      * @private
      */
 
@@ -1680,7 +1719,7 @@ var Hash = function () {
      * Gets the slide number from the hash by a regex matching `#slide=` and gets
      * the number after it. If the number is invalid or less than 0, it will
      * return null as an invalid value.
-     * @return {?number}
+     * @return {?number} The slide number (0-based index) or null if invalid.
      */
 
   }, {
@@ -1706,6 +1745,7 @@ var Hash = function () {
      * It will update the hash (if it's different) so it reflects the slide
      * number being visible.
      * @param {number} number The number of the slide we're transitioning to.
+     * @return {void}
      */
 
   }, {
@@ -1763,6 +1803,7 @@ var Keyboard = function () {
    * Reacts to the keydown event. It reacts to the arrows and space key
    * depending on the layout of the page.
    * @param {KeyboardEvent} event The key event.
+   * @return {void}
    * @private
    */
 
@@ -1911,6 +1952,7 @@ var Navigation = function () {
 
   /**
    * Bind all events for the navigation.
+   * @return {void}
    * @private
    */
 
@@ -1928,6 +1970,7 @@ var Navigation = function () {
      * Updates the counter inside the navigation.
      * @param {string|number} current Current slide number.
      * @param {string|number} max Max slide number.
+     * @return {void}
      */
 
   }, {
@@ -1954,6 +1997,7 @@ var Navigation = function () {
     /**
      * Slide Change event handler. Will update the text on the navigation.
      * @param {CustomEvent} event
+     * @return {void}
      * @private
      */
     value: function onSlideChanged_(event) {
@@ -1963,6 +2007,7 @@ var Navigation = function () {
     /**
      * Handles clicks on the next/prev buttons.
      * @param {MouseEvent} event
+     * @return {void}
      * @private
      */
 
@@ -1992,7 +2037,7 @@ var Navigation = function () {
      * Creates the navigation counter.
      * @param {!String} id Desired ID for the counter.
      * @param {WebSlides} ws_ WebSlides object.
-     * @return {Element} The arrow element.
+     * @return {Element} The counter element.
      */
 
   }, {
@@ -2362,7 +2407,7 @@ var Touch = function () {
     /**
      * Get X,Y coordinates from touch pointers.
      * @param {Event} event
-     * @return {Object}
+     * @return {Object} Object containing x and y coordinates.
      */
 
   }], [{
@@ -2468,6 +2513,7 @@ var Video = function () {
   /**
    * On Section enable hook. Will play the video.
    * @param {CustomEvent} event
+   * @return {void}
    */
 
 
@@ -2480,6 +2526,7 @@ var Video = function () {
     /**
      * On Section enable hook. Will pause the video.
      * @param {CustomEvent} event
+     * @return {void}
      */
 
   }, {
@@ -2516,7 +2563,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Player = function () {
   /**
-   * @param {Element} el
+   * @param {Element} el The element where the player will be created.
    */
   function Player(el) {
     _classCallCheck(this, Player);
@@ -2575,6 +2622,7 @@ var Player = function () {
 
   /**
    * Destroys the iframe. Saves the current time in case it gets restored.
+   * @return {void}
    */
 
 
@@ -2590,6 +2638,7 @@ var Player = function () {
 
     /**
      * Creates the player.
+     * @return {void}
      */
 
   }, {
@@ -2602,6 +2651,7 @@ var Player = function () {
     /**
      * Player ready callback. Will play the video if it was intended to be played
      * and will also call any pending callbacks.
+     * @return {void}
      */
 
   }, {
@@ -2628,6 +2678,7 @@ var Player = function () {
 
     /**
      * Plays the video.
+     * @return {void}
      */
 
   }, {
@@ -2654,6 +2705,7 @@ var Player = function () {
 
     /**
      * Pause playing the video if it's already playing.
+     * @return {void}
      */
 
   }, {
@@ -2729,6 +2781,7 @@ var YouTube = function () {
 
   /**
    * Once the YouTube API is ready this gets called so we can start the videos.
+   * @return {void}
    */
 
 
@@ -2762,6 +2815,7 @@ var YouTube = function () {
 
     /**
      * Injects the YouTube iFrame API into the page.
+     * @return {void}
      */
 
   }, {
@@ -2777,6 +2831,7 @@ var YouTube = function () {
     /**
      * Reacts to any event on the slide.
      * @param {CustomEvent} event
+     * @return {void}
      */
 
   }], [{
@@ -2803,6 +2858,7 @@ var YouTube = function () {
     /**
      * On Section enable hook. Will play the video.
      * @param {Slide} slide
+     * @return {void}
      */
 
   }, {
@@ -2816,6 +2872,7 @@ var YouTube = function () {
     /**
      * On Section enable hook. Will pause the video.
      * @param {Slide} slide
+     * @return {void}
      */
 
   }, {
@@ -2897,6 +2954,7 @@ var Zoom = function () {
   /**
    * On key down handler. Will decide if Zoom in or out
    * @param {Event} event Key down event.
+   * @return {void}
    */
 
 
@@ -2917,6 +2975,7 @@ var Zoom = function () {
     /**
      * Prepare zoom structure, scales the slides and uses a grid layout
      * to show them.
+     * @return {void}
      */
 
   }, {
@@ -2957,6 +3016,7 @@ var Zoom = function () {
     /**
      * Creates a block structure around the slide.
      * @param {Element} elem slide element.
+     * @return {void}
      */
 
   }, {
@@ -2991,6 +3051,7 @@ var Zoom = function () {
 
     /**
      * Toggles zoom.
+     * @return {void}
      */
 
   }, {
@@ -3005,6 +3066,7 @@ var Zoom = function () {
 
     /**
      * Zoom In the slider, scales the slides and uses a grid layout to show them.
+     * @return {void}
      */
 
   }, {
@@ -3039,6 +3101,7 @@ var Zoom = function () {
 
     /**
      * Zoom Out the slider, remove scale from the slides.
+     * @return {void}
      */
 
   }, {
@@ -3059,6 +3122,7 @@ var Zoom = function () {
 
     /**
      * Hides the zoom container
+     * @return {void}
      */
 
   }, {
@@ -3069,6 +3133,7 @@ var Zoom = function () {
 
     /**
      * Shows the zoom container
+     * @return {void}
      */
 
   }, {
@@ -3091,7 +3156,7 @@ var Zoom = function () {
 /**
  * Swing easing function.
  * @param {number} p The percentage of time that has passed.
- * @return {number}
+ * @return {number} The eased percentage.
  */
 function swing(p) {
   return 0.5 - Math.cos(p * Math.PI) / 2;
